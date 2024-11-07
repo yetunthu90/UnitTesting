@@ -12,7 +12,7 @@ public class CalculatorTest {
         assertEquals(7, result, "3 + 4 should equal 7");
     }
 
-    // Test for the subtract method
+    // Test for the subtract method 
     @Test
     public void testSubtract() {
         Calculator calculator = new Calculator();
