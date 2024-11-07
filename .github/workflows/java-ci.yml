@@ -23,19 +23,19 @@ jobs:
           distribution: 'temurin'
 
       # Step 3: Build with Gradle or Maven
-      - name: Build with Maven
-        run: mvn -B package --file pom.xml
+      - name: Build with Gradle
+        run: gradle build
 
       - name: Run tests
-        run: mvn test
+        run: gradle test
+
 
       # If using Maven instead of Gradle, comment out the above build step and uncomment the following:
       # - name: Build with Maven
       #   run: mvn -B package --file pom.xml
 
       # Step 4: Run tests
-      - name: Run tests
-        run: ./gradlew test
+    
       
       # If using Maven for testing, comment out the Gradle test line and uncomment this Maven test step:
       # - name: Run tests
