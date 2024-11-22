@@ -11,4 +11,5 @@ jobs:
         with:
           repo-token: "${{ secrets.GITHUB_TOKEN }}"
           label: "in progress"
+          column: "In Progress"
           remove-label: "test, review, ready"
