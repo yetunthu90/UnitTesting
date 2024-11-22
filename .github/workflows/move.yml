@@ -1,15 +1,21 @@
+name: Add 'In progress' Label on Issue Assignment
+
 on:
   issues:
-    types: [assigned]
- 
+    types:
+      - assigned
+
 jobs:
-  automate-issues-labels:
+  add-label:
     runs-on: ubuntu-latest
+
     steps:
-      - name: Move to In Progress
-        uses: bishalrai96/Project_Card_Automation@master
-        with:
-          repo-token: "${{ secrets.GITHUB_TOKEN }}"
-          label: "in progress"
-          column: "In Progress"
-          remove-label: "test, review, ready"
+      - name: Add 'In progress' label to the assigned issue
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          curl -X POST \
+            -H "Authorization: Bearer $GITHUB_TOKEN" \
+            -H "Accept: application/vnd.github+json" \
+            https://api.github.com/repos/${{ github.repository }}/issues/${{ github.event.issue.number }}/labels \
+            -d '{"labels":["In progress"]}'
