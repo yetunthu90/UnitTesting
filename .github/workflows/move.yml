@@ -1,20 +1,14 @@
-name: Move card
-
 on:
-  # refer https://docs.github.com/en/actions/learn-github-actions/events-that-trigger-workflows#issues
   issues:
     types: [assigned]
-  # refer https://docs.github.com/en/actions/learn-github-actions/events-that-trigger-workflows#issue_comment
-  issue_comment:
-    types: [created]
-
+ 
 jobs:
-  build:
+  automate-issues-labels:
     runs-on: ubuntu-latest
     steps:
-      - uses: ineshbose/project-card-action@v1
+      - name: Move to In Progress
+        uses: bishalrai96/Project_Card_Automation@master
         with:
-          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          ISSUE_NUMBER: ${{ github.event.issue.number }}
-          TARGET_COLUMN: 'In progress'
-            
+          repo-token: "${{ secrets.GITHUB_TOKEN }}"
+          label: "in progress"
+          remove-label: "test, review, ready"
